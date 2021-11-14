@@ -55,7 +55,7 @@ export default function Home(): JSX.Element {
 
         <Box maxW={1120} px={20} mx="auto" my={20}>
           <CardList cards={formattedData} />
-          {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
+          { hasNextPage && <Button>Carregar mais</Button>}
         </Box>
       </>
     );
