@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   );
 
   const formattedData = useMemo(() => {
-    // TODO FORMAT AND FLAT DATA ARRAY
+    return data.pages.map(image => image.data).flat()
   }, [data]);
 
   return isLoading ? (
