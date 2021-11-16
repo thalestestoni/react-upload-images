@@ -33,6 +33,7 @@ export default function Home(): JSX.Element {
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
+    isFetched
   } = useInfiniteQuery(
     'images',
     fetchImages, 
@@ -42,7 +43,9 @@ export default function Home(): JSX.Element {
   );
 
   const formattedData = useMemo(() => {
-    return data.pages.map(image => image.data).flat()
+      return isFetched 
+        ? data.pages.map(image => image.data).flat() 
+        : null
   }, [data]);
 
   return isLoading ? (
