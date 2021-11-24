@@ -18,13 +18,45 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
 
   const formValidations = {
     image: {
-      // TODO REQUIRED, LESS THAN 10 MB AND ACCEPTED FORMATS VALIDATIONS
+      required: 'Arquivo obrigatório',
+      validate: {
+        lessThan10MB: (files: FileList) => {
+          const _10MB = 1000 * 100 * 100; // 10 MB
+          
+          if (files[0].size > _10MB) {
+            return 'O arquivo deve ser menor que 10MB';
+          }
+
+          return true;
+        },
+        acceptedFormats: (files: any) => {
+          const acceptedFormats = ['image/jpeg', 'image/png', 'image/gif'];
+
+          if (!acceptedFormats.includes(files[0].type)){
+            return 'Somente são aceitos arquivos PNG, JPEG e GIF';
+          }
+
+          return true;
+        }
+      }
     },
     title: {
-      // TODO REQUIRED, MIN AND MAX LENGTH VALIDATIONS
+      required: 'Título obrigatório',
+      minLength: {
+        value: 2,
+        message: 'Mínimo de 2 caracteres'
+      },
+      maxLength: {
+        value: 65,
+        message: 'Máximo de 20 caracteres'
+      }
     },
     description: {
-      // TODO REQUIRED, MAX LENGTH VALIDATIONS
+      required: 'Descrição obrigatória',
+      maxLength: {
+        value: 65,
+        message: 'Máximo de 65 caracteres'
+      }
     },
   };
 
@@ -67,20 +99,24 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setLocalImageUrl={setLocalImageUrl}
           setError={setError}
           trigger={trigger}
-          // TODO SEND IMAGE ERRORS
-          // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
+          name="image"
+          onChange={async () => {}}
+          error={formState.errors.image}
+          {...register('image', formValidations.image)}
         />
 
         <TextInput
           placeholder="Título da imagem..."
-          // TODO SEND TITLE ERRORS
-          // TODO REGISTER TITLE INPUT WITH VALIDATIONS
+          name="fileName"
+          error={formState.errors.title}
+          {...register('title', formValidations.title)}
         />
 
         <TextInput
           placeholder="Descrição da imagem..."
-          // TODO SEND DESCRIPTION ERRORS
-          // TODO REGISTER DESCRIPTION INPUT WITH VALIDATIONS
+          name="fileDescription"
+          error={formState.errors.description}
+          {...register('description', formValidations.description)}
         />
       </Stack>
 
