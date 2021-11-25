@@ -7,6 +7,12 @@ import { api } from '../../services/api';
 import { FileInput } from '../Input/FileInput';
 import { TextInput } from '../Input/TextInput';
 
+type UploadImageFormData = {
+  url: string;
+  title: string;
+  description: string;
+}
+
 interface FormAddImageProps {
   closeModal: () => void;
 }
@@ -62,9 +68,17 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
 
   const queryClient = useQueryClient();
   const mutation = useMutation(
-    // TODO MUTATION API POST REQUEST,
-    {
-      // TODO ONSUCCESS MUTATION
+    async ({ url, title, description }: UploadImageFormData) => {
+      return await api.post('/api/images', { 
+        url,
+        title,
+        description
+      });
+    },
+    { 
+      onSuccess: () => {
+        queryClient.invalidateQueries('images');
+      }
     }
   );
 
