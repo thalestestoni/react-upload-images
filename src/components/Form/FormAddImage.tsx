@@ -102,7 +102,10 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
         })
       }
 
-      await mutation.mutateAsync(data);
+      await mutation.mutateAsync({
+        ...data,
+        url: imageUrl
+      });
       
       toast({ 
         status: 'success',
@@ -132,8 +135,7 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setLocalImageUrl={setLocalImageUrl}
           setError={setError}
           trigger={trigger}
-          name="image"
-          onChange={async () => {}}
+          name="file"
           error={errors.image}
           {...register('image', formValidations.image)}
         />
