@@ -17,17 +17,17 @@ interface ModalViewImageProps {
 export function ModalViewImage({
   isOpen,
   onClose,
-  imgUrl,
+  imgUrl
 }: ModalViewImageProps): JSX.Element {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent bgColor="pGray.800">
-        <ModalBody p={0}>
-          <Image src={imgUrl} />
+        <ModalBody p={0} >
+          <Image src={imgUrl}/>
         </ModalBody>
 
-        <ModalFooter p="8px 10px">
+        <ModalFooter px="8px" py="10px">
           <Link href={imgUrl} mr="auto" fontSize="sm">
             Abrir original
           </Link>
