@@ -1,12 +1,16 @@
 import { Button, Box } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Header } from '../components/Header';
 import { CardList } from '../components/CardList';
-import { api } from '../services/api';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/Error';
+
+// import useIntersectionObserver from '../hooks/useIntersectionObserver';
+import { api } from '../services/api';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 type FetchImagesResponse = {
   after?: string;
@@ -48,6 +52,8 @@ export default function Home(): JSX.Element {
         : null
   }, [data]);
 
+  const [setRef] = useIntersectionObserver({ onIntersect: fetchNextPage });
+
   return isLoading ? (
     <Loading />
   ) : isError ? (
@@ -60,13 +66,18 @@ export default function Home(): JSX.Element {
           <CardList cards={formattedData} />
           
           { hasNextPage && (
-            <Button onClick={() => fetchNextPage()} mt="40px">
+            <Button
+              ref={setRef}
+              onClick={() => fetchNextPage()}
+              mt="40px"
+            >
               { isFetchingNextPage
                 ? 'Carregando...'
                 : 'Carregar mais'}
             </Button>
           )}
         </Box>
+        <ReactQueryDevtools initialIsOpen/>
       </>
     );
 }
