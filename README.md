@@ -43,10 +43,10 @@ Acesse o link descrito no terminal para acessar a aplicação no seu navegador.
 
 # Tecnologias
 
-React
-IMGBB
-FaunaDB
-React Query
-React Hook Form
-Chakra UI
-Jest
+* React
+* IMGBB
+* FaunaDB
+* React Query
+* React Hook Form
+* Chakra UI
+* Jest
