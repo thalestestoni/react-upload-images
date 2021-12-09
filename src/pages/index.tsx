@@ -1,7 +1,6 @@
 import { Button, Box } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Header } from '../components/Header';
 import { CardList } from '../components/CardList';
@@ -52,7 +51,10 @@ export default function Home(): JSX.Element {
         : null
   }, [data]);
 
-  const [setRef] = useIntersectionObserver({ onIntersect: fetchNextPage });
+  const [setRef] = useIntersectionObserver({ 
+    onIntersect: fetchNextPage, 
+    enabled: hasNextPage
+  });
 
   return isLoading ? (
     <Loading />
@@ -77,7 +79,6 @@ export default function Home(): JSX.Element {
             </Button>
           )}
         </Box>
-        <ReactQueryDevtools initialIsOpen/>
       </>
     );
 }

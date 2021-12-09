@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 interface IntersectionObserverProps {
   onIntersect: () => void;
   options?: IntersectionObserverInit;
+  enabled: boolean;
 }
 
-export default function useIntersectionObserver({ onIntersect, options }: IntersectionObserverProps) {
+export default function useIntersectionObserver({ 
+  onIntersect, 
+  options, 
+  enabled 
+}: IntersectionObserverProps) {
   const [ref, setRef] = useState(null);
 
   function handleIntersection([entry]: IntersectionObserverEntry[]) {
@@ -15,6 +20,10 @@ export default function useIntersectionObserver({ onIntersect, options }: Inters
   }
 
   useEffect(() => {
+    if (!enabled){
+      return;
+    }
+
     const observer = new IntersectionObserver(handleIntersection, options);
 
     if (ref) {
