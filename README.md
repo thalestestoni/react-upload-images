@@ -1,4 +1,4 @@
-# Bem bem-vindo ao projeto react-upload-images!
+# Bem-vindo ao projeto react-upload-images!
 
 Este app faz upload de imagens e também mostra os uploads já feitos.
 
