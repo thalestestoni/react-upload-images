@@ -1,4 +1,4 @@
-# Oii, seja bem bem-vindo ao projeto react-upload-images!
+# Bem-vindo ao projeto react-upload-images!
 
 Este app faz upload de imagens e também mostra os uploads já feitos.
 
@@ -43,10 +43,10 @@ Acesse o link descrito no terminal para acessar a aplicação no seu navegador.
 
 # Tecnologias
 
-React
-IMGBB
-FaunaDB
-React Query
-React Hook Form
-Chakra UI
-Jest
+* React
+* IMGBB
+* FaunaDB
+* React Query
+* React Hook Form
+* Chakra UI
+* Jest
