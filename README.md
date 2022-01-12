@@ -2,6 +2,10 @@
 
 Este app faz upload de imagens e também mostra os uploads já feitos.
 
+# Demonstração do app
+
+ ![](app-working.gif)
+
 # Como rodar o projeto
 
 Passos:
